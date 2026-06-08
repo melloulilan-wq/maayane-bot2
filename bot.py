@@ -6,13 +6,13 @@ from telegram import Update, Bot
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 # ── Configuration ────────────────────────────────────────────────────────────
-ANTHROPIC_API_KEY = os.environ["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"]
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 AGENT_ID          = "agent_01Gij1jRdHhxaWiqyh4YSGAL"
 ENVIRONMENT_ID    = "env_01D7tAgLmBSQcnxWGMYcknWW"
-TELEGRAM_TOKEN    = os.environ["8722252867:AAGk6HaLt3oeeWdQIFH0GB9bKRHC2uYpk3I"]
+TELEGRAM_TOKEN    = os.environ["TELEGRAM_BOT_TOKEN"]
 
 HEADERS = {
-    "x-api-key": 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,
+    "x-api-key": ANTHROPIC_API_KEY,
     "anthropic-version": "2023-06-01",
     "anthropic-beta": "managed-agents-2026-04-01",
     "content-type": "application/json",
@@ -62,10 +62,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ── Lancement du bot ──────────────────────────────────────────────────────────
 def main():
-    app = Application.builder().token(8722252867:AAGk6HaLt3oeeWdQIFH0GB9bKRHC2uYpk3I).build()
+    app = Application.builder().token(TELEGRAM_TOKEN).build()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     print("✅ Bot Telegram démarré...")
     app.run_polling()
 
 if __name__ == "__main__":
-    main() 
+    main()
